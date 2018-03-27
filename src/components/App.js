@@ -1,24 +1,16 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import helloWorld from 'modules/hello.module';
+import Questions from './Questions';
 
 const Wrapper = styled.div`
   padding: 5px;
-  background: linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
 `;
 
-const Title = styled.h1`
+const Header = styled.h1`
   font-size: 22px;
-  text-align: center;
-  color: white;
+  margin: 25px;
+  text-align: left;
   opacity: 0.75;
   font-family: Arial;
   transition: all 0.35s ease-in;
@@ -29,17 +21,33 @@ const Title = styled.h1`
   }
 `;
 
-const App = ({ text }) => (
-  <Wrapper>
-    <Title>{`${text} :)`}</Title>
-  </Wrapper>
-);
+const QuestionsWrapper = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
+`;
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+
+    return (
+      <Wrapper>
+        <Header>{'Questions'}</Header>
+          <QuestionsWrapper>
+            <Questions />
+          </QuestionsWrapper>
+      </Wrapper>
+    );
+  }
+}
 
 App.propTypes = {
-  text: PropTypes.string.isRequired,
 };
 
-export default function() {
-  const result = helloWorld();
-  return <App text={result} />;
-}
+export default App;
