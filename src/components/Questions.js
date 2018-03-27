@@ -42,22 +42,25 @@ const Choices = styled.div`
   font-weight: 800;
 `;
 
-const Questions = () => {
+const Questions = ({ question, published_at, choices }) => {
 
   return (
     <QuestionWrapper>
       <QuestionHeader>
-        Question
+        {question}
       </QuestionHeader>
-      <PublishedAt>Published At</PublishedAt>
+      <PublishedAt>{published_at}</PublishedAt>
       <Choices>
-        Amount Of Choices: 4
+        Amount Of Answers: {choices.length}
       </Choices>
     </QuestionWrapper>
   );
 };
 
 Questions.propTypes = {
+  question: propTypes.string.isRequired,
+  published_at: propTypes.string.isRequired,
+  choices: propTypes.array.isRequired,
 };
 
 export default Questions;

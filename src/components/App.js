@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchQuestions } from '../actions';
 import Questions from './Questions';
 
 const Wrapper = styled.div`
@@ -30,24 +32,46 @@ const QuestionsWrapper = styled.section`
 `;
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchQuestions());
+  };
+
   render() {
+    const { isFetching, questions } = this.props;
+
+    const isEmpty = questions.length === 0;
 
     return (
-      <Wrapper>
-        <Header>{'Questions'}</Header>
-          <QuestionsWrapper>
-            <Questions />
-          </QuestionsWrapper>
-      </Wrapper>
+      !isFetching ?
+        <Wrapper>
+          <Header>{'Questions'}</Header>
+          { !isEmpty ?
+              <QuestionsWrapper>
+                {questions.map(question => <Questions {...question} key={question.url}/>)}
+              </QuestionsWrapper> : null
+          }
+        </Wrapper> : null
     );
   }
 }
 
 App.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = state => {
+  const { questions, isFetching } = state.data;
+
+  return {
+    questions,
+    isFetching,
+  }
+}
+
+export default connect(mapStateToProps)(App)
