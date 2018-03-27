@@ -1,18 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import { media } from './css.js';
 
 const QuestionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 20%;
-  margin: 10px 10px 50px 10px;
+  width: 200px;
+  margin: 10px;
   &:hover {
     opacity: 1;
     cursor: pointer;
     transform: scale(1.05);
   }
+  ${media.phone`
+      width: 250px;
+      margin: 20px;
+    `}
 `;
 
 const QuestionHeader = styled.div`

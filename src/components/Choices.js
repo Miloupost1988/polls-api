@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import { media } from './css.js';
 
 const ChoicesWrapper = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 10px 40px;
+  padding: 20px;
   margin: 20px;
   border: 1px solid red;
   &:hover {
@@ -14,6 +15,18 @@ const ChoicesWrapper = styled.section`
     cursor: pointer;
     transform: scale(1.05);
   }
+  ${media.tablet`
+      flex-direction: column;
+      justify-content: center;
+      width: 200px;
+      height: 100%;
+    `}
+    ${media.phone`
+      flex-direction: column;
+      justify-content: center;
+      width: 200px;
+      height: 100%;
+    `}
 `;
 
 const Choice = styled.h6`

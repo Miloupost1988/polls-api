@@ -6,6 +6,8 @@ import Choices from './Choices';
 const QuestionDetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  justify-content: center;
 `;
 
 const QuestionDetailHeader = styled.h1`

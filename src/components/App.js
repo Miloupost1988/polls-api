@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 import { fetchQuestions, clickQuestion } from '../actions';
 import Questions from './Questions';
 import QuestionDetail from './QuestionDetail';
+import { media } from './css.js';
 
 const Wrapper = styled.div`
-  padding: 5px;
+  padding: 20px;
 `;
 
 const Header = styled.h1`
   font-size: 22px;
+  width: 100px;
   margin: 25px;
   text-align: left;
   opacity: 0.75;
@@ -24,13 +26,27 @@ const Header = styled.h1`
   }
 `;
 
-const QuestionsWrapper = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 20px;
-  flex-wrap: wrap;
-`;
+const QuestionsWrapper = styled.div`
+  color: #333;
+  ${media.giant`
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      padding: 20px;
+      flex-wrap: wrap;
+    `}
+  ${media.desktop`
+      flex-direction: row;
+    `}
+  ${media.tablet`
+      flex-direction: row;
+    `}
+  ${media.phone`
+      flex-direction: column;
+      justify-content: center;
+    `}
+`
 
 class App extends Component {
   constructor(props) {
