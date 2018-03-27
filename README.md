@@ -2,7 +2,7 @@
 
 Project for React polls api.
 
-> Simple setup that comes with hot-reloading, styled-components, and test setup with watch and coverage
+> Simple setup that comes with hot-reloading and styled-components
 
 ### Scripts
 
@@ -28,6 +28,4 @@ Project for React polls api.
 
 ### Plugins
 
-[`styled-components`](https://github.com/styled-components/babel-plugin-styled-components) - Allows for better debugging & minification
-
-#### prod
+[`styled-components`](https://github.com/styled-components/babel-plugin-styled-components)
