@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchQuestions } from '../actions';
 import Questions from './Questions';
+import QuestionDetail from './QuestionDetail';
 
 const Wrapper = styled.div`
   padding: 5px;
@@ -55,6 +56,7 @@ class App extends Component {
                 {questions.map(question => <Questions {...question} key={question.url}/>)}
               </QuestionsWrapper> : null
           }
+          <QuestionDetail />
         </Wrapper> : null
     );
   }
