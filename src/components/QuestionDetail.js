@@ -32,6 +32,7 @@ const QuestionDetailChoices = styled.h2`
 `;
 
 const QuestionDetail = ({ choices, question }) => {
+  const totalVotes = choices.reduce((accumulator, { votes }) => accumulator + votes, 0);
 
   return (
     <QuestionDetailWrapper>
@@ -39,7 +40,7 @@ const QuestionDetail = ({ choices, question }) => {
         Question: {question}
       </QuestionDetailHeader>
       <QuestionDetailChoices>
-        {choices.map(choice => <Choices {...choice} length={choices.length} key={Math.random()}/>)}
+        {choices.map(choice => <Choices totalVotes={totalVotes} {...choice} key={Math.random()}/>)}
       </QuestionDetailChoices>
     </QuestionDetailWrapper>
   );

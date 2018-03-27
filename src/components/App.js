@@ -42,8 +42,14 @@ class App extends Component {
     dispatch(fetchQuestions());
   };
 
+  //set variable on state to hide and show detailed view
   onClick(questionDetails, dispatch) {
     dispatch(clickQuestion(questionDetails));
+  };
+
+  //to return to home page out of detailed view
+  homeButtonClick(dispatch) {
+    dispatch(clickQuestion())
   };
 
   render() {
@@ -54,13 +60,14 @@ class App extends Component {
       questionDetail,
     } = this.props;
 
+    //to make sure questions is not empty
     const isEmpty = questions.length === 0;
 
     return (
       !isFetching ?
         <Wrapper>
-          <Header>{'Questions'}</Header>
-          { !isEmpty ?
+          <Header onClick={() => this.homeButtonClick(this.props.dispatch)}>{'Questions'}</Header>
+          { !isEmpty && !clicked ?
               <QuestionsWrapper>
                 {questions.map(question => <Questions {...question} key={question.url} onClick={() => this.onClick(question, this.props.dispatch)} />)}
               </QuestionsWrapper> : null
