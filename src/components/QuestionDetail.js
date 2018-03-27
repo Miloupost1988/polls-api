@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import Choices from './Choices';
 
 const QuestionDetailWrapper = styled.div`
   display: flex;
@@ -30,21 +31,23 @@ const QuestionDetailChoices = styled.h2`
   letter-spacing: 5px;
 `;
 
-const QuestionDetail = () => {
+const QuestionDetail = ({ choices, question }) => {
 
   return (
     <QuestionDetailWrapper>
       <QuestionDetailHeader>
-        Question: Question
+        Question: {question}
       </QuestionDetailHeader>
       <QuestionDetailChoices>
-        Choices
+        {choices.map(choice => <Choices {...choice} length={choices.length} key={Math.random()}/>)}
       </QuestionDetailChoices>
     </QuestionDetailWrapper>
   );
 };
 
 QuestionDetail.propTypes = {
+  choices: propTypes.array.isRequired,
+  question: propTypes.string.isRequired,
 };
 
 export default QuestionDetail;

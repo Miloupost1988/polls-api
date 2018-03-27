@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   FETCH_QUESTIONS,
   RECEIVE_QUESTIONS,
+  CLICK_QUESTION,
 } from '../actions/actionTypes';
 
 const data = (state = {
@@ -25,6 +26,23 @@ const data = (state = {
   }
 }
 
+const questionDetail = (state = {
+  clicked: false,
+  questionDetail: {},
+}, action) => {
+  switch (action.type) {
+    case CLICK_QUESTION:
+      return {
+        ...state,
+        clicked: !state.clicked,
+        questionDetail: action.questionDetail,
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   data,
+  questionDetail,
 })

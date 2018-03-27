@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchQuestions } from '../actions';
+import { fetchQuestions, clickQuestion } from '../actions';
 import Questions from './Questions';
 import QuestionDetail from './QuestionDetail';
 
@@ -42,8 +42,17 @@ class App extends Component {
     dispatch(fetchQuestions());
   };
 
+  onClick(questionDetails, dispatch) {
+    dispatch(clickQuestion(questionDetails));
+  };
+
   render() {
-    const { isFetching, questions } = this.props;
+    const {
+      isFetching,
+      questions,
+      clicked,
+      questionDetail,
+    } = this.props;
 
     const isEmpty = questions.length === 0;
 
@@ -53,10 +62,10 @@ class App extends Component {
           <Header>{'Questions'}</Header>
           { !isEmpty ?
               <QuestionsWrapper>
-                {questions.map(question => <Questions {...question} key={question.url}/>)}
+                {questions.map(question => <Questions {...question} key={question.url} onClick={() => this.onClick(question, this.props.dispatch)} />)}
               </QuestionsWrapper> : null
           }
-          <QuestionDetail />
+          { clicked ? <QuestionDetail {...questionDetail}/> : null }
         </Wrapper> : null
     );
   }
@@ -65,14 +74,19 @@ class App extends Component {
 App.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   questions: PropTypes.array.isRequired,
+  clicked: PropTypes.bool.isRequired,
+  questionDetail: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => {
   const { questions, isFetching } = state.data;
+  const { clicked, questionDetail } = state.questionDetail;
 
   return {
     questions,
     isFetching,
+    clicked,
+    questionDetail,
   }
 }
 

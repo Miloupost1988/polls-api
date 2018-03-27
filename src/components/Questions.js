@@ -42,10 +42,10 @@ const Choices = styled.div`
   font-weight: 800;
 `;
 
-const Questions = ({ question, published_at, choices }) => {
+const Questions = ({ question, published_at, choices, onClick }) => {
 
   return (
-    <QuestionWrapper>
+    <QuestionWrapper onClick={(e) => onClick(e)}>
       <QuestionHeader>
         {question}
       </QuestionHeader>

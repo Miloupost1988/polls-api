@@ -1,6 +1,7 @@
 import {
   FETCH_QUESTIONS,
   RECEIVE_QUESTIONS,
+  CLICK_QUESTION,
 } from './actionTypes';
 
 const requestQuestions = (state) => ({
@@ -11,6 +12,12 @@ const requestQuestions = (state) => ({
 const receiveQuestions = (json) => ({
   type: RECEIVE_QUESTIONS,
   questions: json,
+});
+
+export const clickQuestion = (payload) => ({
+  type: CLICK_QUESTION,
+  clicked: true,
+  questionDetail: payload,
 });
 
 export const fetchQuestions = () => (dispatch, getState) => {
