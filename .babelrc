@@ -1,0 +1,20 @@
+{
+  "presets": [
+    "env",
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "styled-components",
+    "transform-runtime",
+    "dynamic-import-webpack"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-react-inline-elements",
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}
